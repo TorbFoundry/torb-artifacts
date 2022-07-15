@@ -1,0 +1,15 @@
+torb:
+  version: v1
+  kind: stack
+  meta: _PROJECT
+  ingress: true
+  services:
+    - postgres
+  projects:
+    - flaskapp:
+        values: {}
+        deps: 
+          services:
+            - postgres
+  parameters:
+    project_name: "STRING"

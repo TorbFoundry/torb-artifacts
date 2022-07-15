@@ -1,0 +1,7 @@
+torb:
+  version: v1
+  kind: service
+  name: github
+  deploy:
+    script: ./setup.sh
+    tf:

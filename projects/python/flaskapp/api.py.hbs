@@ -1,0 +1,13 @@
+from flask import Flask
+from flask_restful import Api, Resource
+from flask_cors import CORS
+
+app = Flask({{app_name}}))
+CORS(app)
+api = Api(app)
+
+class HelloApp(Resource):
+    def get(self):
+        return {'hello': '{{app_name}}'}
+
+api.add_resource(HelloApp, '/hello')

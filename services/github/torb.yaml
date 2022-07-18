@@ -3,5 +3,4 @@ torb:
   kind: service
   name: github
   deploy:
-    script: ./setup.sh
     tf:

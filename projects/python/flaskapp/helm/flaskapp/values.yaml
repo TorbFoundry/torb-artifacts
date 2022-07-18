@@ -44,7 +44,7 @@ ingress:
   enabled: true
   className: ""
   annotations:
-    kubernetes.io/ingress.class: "traefik.$stack.$app"
+    kubernetes.io/ingress.class: "traefik.torb"
   hosts:
     - host: "flaskapp.$stack.$app.local"
       paths:

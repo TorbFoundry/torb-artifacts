@@ -3,6 +3,7 @@ torb:
   kind: stack
   meta: _PROJECT
   ingress: true
+  name: "Flask App w/ React Frontend"
   services:
     - postgres
   projects:

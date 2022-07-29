@@ -1,11 +1,10 @@
-torb:
-  version: v1.0.0
-  kind: service
-  name: postgres
-  deploy:
-    helm:
-      repository: bitnami
-      url: https://charts.bitnami.com/bitnami
-      chart: postgres
-      custom: false
-    tf:
+version: v1.0.0
+kind: service
+name: postgres
+deploy:
+  helm:
+    repository: bitnami
+    url: https://charts.bitnami.com/bitnami
+    chart: postgres
+    custom: false
+  tf:

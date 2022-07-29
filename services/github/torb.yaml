@@ -1,6 +1,5 @@
-torb:
-  version: v1.0.0
-  kind: service
-  name: github
-  deploy:
-    tf:
+version: v1.0.0
+kind: service
+name: github
+deploy:
+  tf:

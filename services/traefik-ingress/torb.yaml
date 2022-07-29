@@ -1,11 +1,10 @@
-torb:
-  version: v1.0.0
-  kind: service
-  name: traefik-ingress
-  deploy:
-    helm:
-      repository: traefik
-      url: https://helm.traefik.io/traefik
-      chart: traefik
-      custom: false
-    tf:
+version: v1.0.0
+kind: service
+name: traefik-ingress
+deploy:
+  helm:
+    repository: traefik
+    url: https://helm.traefik.io/traefik
+    chart: traefik
+    custom: false
+  tf:

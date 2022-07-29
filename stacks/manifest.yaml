@@ -1,2 +1,2 @@
 stacks:
-    - "Flask App w/ React Frontend": "flaskappwfrontend.yaml"
+    "Flask App w/ React Frontend": "flaskappwfrontend.yaml"

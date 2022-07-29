@@ -1,16 +1,19 @@
 torb:
   version: v1.0.0
   kind: stack
-  meta: _PROJECT
-  ingress: true
   name: "Flask App w/ React Frontend"
+  config:
+    meta: _PROJECT
+    ingress: true
   services:
-    - postgres
+    - postgres_1:
+        service: postgres
   projects:
-    - flaskapp:
+    - flaskapp_1:
+        project: flaskapp
         values: {}
-        deps: 
+        deps:
           services:
-            - postgres
+            - postgres_1
   parameters:
     project_name: "STRING"

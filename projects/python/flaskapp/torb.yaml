@@ -2,12 +2,13 @@ torb:
     version: v1.0.0
     kind: project
     name: flaskapp
+    build:
+        dockerfile: ./Dockerfile
+        registry: ghcr.io/TorbFoundry/flaskapp
     deploy:
-        build:
-            dockerfile: ./Dockerfile
-            registry: ghcr.io/TorbFoundry/flaskapp
         helm:
             custom: true
             chart: flaskapp
+            chart_version: 1.0.0
             path: ./helm/flaskapp
         tf:

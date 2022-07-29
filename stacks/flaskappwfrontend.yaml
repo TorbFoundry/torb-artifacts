@@ -2,6 +2,7 @@ torb:
   version: v1.0.0
   kind: stack
   name: "Flask App w/ React Frontend"
+  description: "Production ready flask web app."
   config:
     meta: _PROJECT
     ingress: true

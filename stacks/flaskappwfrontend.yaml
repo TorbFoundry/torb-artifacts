@@ -7,14 +7,14 @@ torb:
     meta: _PROJECT
     ingress: true
   services:
-    - postgres_1:
-        service: postgres
+    postgres_1:
+      service: postgres
   projects:
-    - flaskapp_1:
-        project: flaskapp
-        values: {}
-        deps:
-          services:
-            - postgres_1
+    flaskapp_1:
+      project: flaskapp
+      values: {}
+      deps:
+        services:
+          - postgres_1
   parameters:
     project_name: "STRING"

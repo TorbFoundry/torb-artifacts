@@ -1,6 +1,8 @@
 version: v1.0.0
 kind: stack
 services:
-  - github
-parameters:
-  project_name: "STRING"
+  - github:
+      service: github
+      params:
+        - name
+        - description

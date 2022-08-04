@@ -2,7 +2,5 @@ version: v1.0.0
 kind: stack
 services:
   - github
-stacks:
-  - $PROJECT_STACK
 parameters:
   project_name: "STRING"

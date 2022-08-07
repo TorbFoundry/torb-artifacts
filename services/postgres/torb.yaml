@@ -1,6 +1,10 @@
 version: v1.0.0
 kind: service
 name: postgres
+params:
+  - port
+  - user
+  - database
 deploy:
   helm:
     repository: bitnami

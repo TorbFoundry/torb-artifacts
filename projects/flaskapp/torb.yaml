@@ -1,6 +1,8 @@
 version: v1.0.0
 kind: project
 name: flaskapp
+params:
+  - name
 build:
   dockerfile: ./Dockerfile
   registry: ghcr.io/TorbFoundry/flaskapp

@@ -1,5 +1,8 @@
 version: v1.0.0
 kind: stack
+name: _PROJECT
+description: "A meta stack that deploys things like a github repo, CI/CD, artifacts repo."
+config:
 services:
-  - github:
-      service: github
+  github:
+    service: github

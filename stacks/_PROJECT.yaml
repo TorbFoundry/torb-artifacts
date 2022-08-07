@@ -3,6 +3,3 @@ kind: stack
 services:
   - github:
       service: github
-      params:
-        - name
-        - description

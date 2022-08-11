@@ -6,3 +6,4 @@ params:
   - description
 deploy:
   tf:
+  helm:

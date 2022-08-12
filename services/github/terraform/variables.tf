@@ -1,12 +1,12 @@
 variable repo_name { 
-    type = "string"
+    type = string
 }
 
 variable description {
-    type = "string"
+    type = string
 }
 
 variable visibility {
-    type = "string"
-    default = "private"
+    type = string
+    default = private
 }

@@ -8,5 +8,5 @@ variable description {
 
 variable visibility {
     type = string
-    default = private
+    default = "private"
 }

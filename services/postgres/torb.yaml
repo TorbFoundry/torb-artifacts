@@ -4,7 +4,9 @@ name: postgres
 params:
   - port
   - user
+  - password
   - database
+  - replicas
 deploy:
   helm:
     repository: bitnami

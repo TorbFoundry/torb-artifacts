@@ -9,8 +9,7 @@ params:
   - replicas
 deploy:
   helm:
-    repository: bitnami
-    url: https://charts.bitnami.com/bitnami
+    repository: https://charts.bitnami.com/bitnami
     chart: postgres
     custom: false
   tf:

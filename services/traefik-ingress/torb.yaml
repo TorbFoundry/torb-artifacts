@@ -3,8 +3,7 @@ kind: service
 name: traefik-ingress
 deploy:
   helm:
-    repository: traefik
-    url: https://helm.traefik.io/traefik
+    repository: https://helm.traefik.io/traefik
     chart: traefik
     custom: false
   tf:

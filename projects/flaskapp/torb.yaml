@@ -11,5 +11,5 @@ deploy:
     custom: true
     chart: flaskapp
     chart_version: 1.0.0
-    path: ./helm/flaskapp
+    repository: ./helm/flaskapp
   tf:

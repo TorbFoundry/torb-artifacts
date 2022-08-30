@@ -1,5 +1,3 @@
-
-
 resource "helm_release" "release" {
   name = var.release_name
   chart = var.chart_name

@@ -17,7 +17,7 @@ variable "namespace" {
 
 variable "values" {
   type = list(string)
-  default = ""
+  default = [""]
 }
 
 variable "repository" {

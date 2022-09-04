@@ -8,6 +8,7 @@ variable "chart_name" {
 
 variable "chart_version" {
   type = string
+  default = ""
 }
 
 variable "namespace" {
@@ -25,21 +26,21 @@ variable "repository" {
 }
 
 variable "timeout" {
-  type = integer
+  type =  number
   default = 300
 }
 
 variable "cleanup_on_fail" {
-  type = boolean
+  type = bool
   default = true
 }
 
 variable "wait" {
-  type = boolean
+  type = bool
   default = true
 }
 
 variable "wait_for_jobs" {
-  type = boolean
+  type = bool
   default = true
 }

@@ -15,5 +15,3 @@ projects:
     deps:
       services:
         - postgres_1
-parameters:
-  project_name: "STRING"

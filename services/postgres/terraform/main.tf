@@ -1,5 +1,5 @@
 module "postgres_helm_release" {
-    source = "../common/helm/main.tf"
+    source = "../common/helm"
     release_name = var.release_name
     chart_name = var.chart_name
     repository = var.repository

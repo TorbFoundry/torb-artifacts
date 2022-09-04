@@ -7,6 +7,8 @@ params:
   - password
   - database
   - replicas
+outputs:
+  - host: ""
 deploy:
   helm:
     repository: https://charts.bitnami.com/bitnami

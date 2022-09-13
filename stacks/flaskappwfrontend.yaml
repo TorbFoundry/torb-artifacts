@@ -8,9 +8,22 @@ config:
 services:
   postgres_1:
     service: postgres
+    inputs:
+      port: 5432
+      user: postgres
+      password: postgres
+      database: postgres
+      num_replicas: 1
 projects:
   flaskapp_1:
     project: flaskapp
+    inputs:
+      name: flaskapp
+      db_host: services.postgres_1.outputs.host
+      db_port: services.postgres_1.outputs.port
+      db_user: services.postgres_1.outputs.user
+      db_pass: services.postgres_1.outputs.password
+      db_name: services.postgres_1.outputs.database
     values: {}
     deps:
       services:

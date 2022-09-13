@@ -1,17 +1,20 @@
 version: v1.0.0
 kind: service
 name: postgres
-params:
+inputs:
   - port
   - user
   - password
   - database
-  - replicas
+  - num_replicas
 outputs:
-  - host: ""
+  - port
+  - user
+  - password
+  - database
 deploy:
   helm:
     repository: https://charts.bitnami.com/bitnami
-    chart: postgres
+    chart: postgresql
     custom: false
   tf:

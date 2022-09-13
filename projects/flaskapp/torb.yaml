@@ -1,8 +1,12 @@
 version: v1.0.0
 kind: project
 name: flaskapp
-params:
+inputs:
   - name
+  - db_host
+  - db_user
+  - db_pass
+  - db_name
 build:
   dockerfile: ./Dockerfile
   registry: ghcr.io/TorbFoundry/flaskapp
@@ -11,5 +15,5 @@ deploy:
     custom: true
     chart: flaskapp
     chart_version: 1.0.0
-    repository: ./helm/flaskapp
+    repository: ~/.torb/torb-artifacts/helm/flaskapp
   tf:

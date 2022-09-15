@@ -9,7 +9,7 @@ services:
   postgres_1:
     service: postgres
     inputs:
-      port: 5432
+      port: "5432"
       user: postgres
       password: postgres
       database: postgres
@@ -19,11 +19,11 @@ projects:
     project: flaskapp
     inputs:
       name: flaskapp
-      db_host: services.postgres_1.outputs.host
-      db_port: services.postgres_1.outputs.port
-      db_user: services.postgres_1.outputs.user
-      db_pass: services.postgres_1.outputs.password
-      db_name: services.postgres_1.outputs.database
+      db_host: self.services.postgres_1.outputs.host
+      db_port: self.services.postgres_1.outputs.port
+      db_user: self.services.postgres_1.outputs.user
+      db_pass: self.services.postgres_1.outputs.password
+      db_name: self.services.postgres_1.outputs.database
     values: {}
     deps:
       services:

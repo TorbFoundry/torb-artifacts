@@ -13,7 +13,7 @@ services:
       user: postgres
       password: postgres
       database: postgres
-      num_replicas: 1
+      num_replicas: "1"
 projects:
   flaskapp_1:
     project: flaskapp

@@ -2,11 +2,11 @@ version: v1.0.0
 kind: service
 name: postgres
 inputs:
-  - port: "containerPorts.postgresql"
-  - user: "auth.username"
-  - password: "auth.password"
-  - database: "auth.database"
-  - num_replicas: "readReplicas.replicaCount"
+  port: "containerPorts.postgresql"
+  user: "auth.username"
+  password: "auth.password"
+  database: "auth.database"
+  num_replicas: "readReplicas.replicaCount"
 outputs:
   - user
   - password

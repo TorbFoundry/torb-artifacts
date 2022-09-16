@@ -6,6 +6,7 @@ inputs:
   db_host: app.db_host
   db_user: app.db_user
   db_pass: app.db_pass
+  db_port: app.db_port
   db_database: app.db_database
 build:
   dockerfile: ./Dockerfile

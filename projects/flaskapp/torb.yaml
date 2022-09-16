@@ -2,11 +2,11 @@ version: v1.0.0
 kind: project
 name: flaskapp
 inputs:
-  - name
-  - db_host
-  - db_user
-  - db_pass
-  - db_name
+  name: app.name
+  db_host: app.db_host
+  db_user: app.db_user
+  db_pass: app.db_pass
+  db_database: app.db_database
 build:
   dockerfile: ./Dockerfile
   registry: ghcr.io/TorbFoundry/flaskapp

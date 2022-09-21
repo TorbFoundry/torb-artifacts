@@ -19,11 +19,11 @@ projects:
     project: flaskapp
     inputs:
       name: flaskapp
-      db_host: self.services.postgres_1.outputs.host
-      db_port: self.services.postgres_1.outputs.port
-      db_user: self.services.postgres_1.outputs.user
-      db_pass: self.services.postgres_1.outputs.password
-      db_database: self.services.postgres_1.outputs.database
+      db_host: self.service.postgres_1.output.host
+      db_port: self.service.postgres_1.output.port
+      db_user: self.service.postgres_1.output.user
+      db_pass: self.service.postgres_1.output.password
+      db_database: self.services.postgres_1.output.database
     values: {}
     deps:
       services:

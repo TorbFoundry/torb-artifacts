@@ -23,7 +23,7 @@ projects:
       db_port: self.service.postgres_1.output.port
       db_user: self.service.postgres_1.output.user
       db_pass: self.service.postgres_1.output.password
-      db_database: self.services.postgres_1.output.database
+      db_database: self.service.postgres_1.output.database
     values: {}
     deps:
       services:

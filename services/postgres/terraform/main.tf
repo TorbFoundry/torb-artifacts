@@ -5,4 +5,5 @@ module "postgres_helm_release" {
     repository = var.repository
     namespace = var.namespace
     values = var.values
+    inputs = var.inputs
 }

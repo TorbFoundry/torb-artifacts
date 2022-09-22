@@ -19,3 +19,8 @@ variable "values" {
   type = list(string)
   default = [""]
 }
+
+variable "inputs" {
+  type = list(object)
+  default = []
+}

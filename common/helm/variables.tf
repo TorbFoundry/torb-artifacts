@@ -44,3 +44,7 @@ variable "wait_for_jobs" {
   type = bool
   default = true
 }
+
+variable "inputs" {
+  type = list(object)
+}

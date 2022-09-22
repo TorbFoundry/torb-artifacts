@@ -10,5 +10,14 @@ resource "helm_release" "release" {
   wait = var.wait
   wait_for_jobs = var.wait_for_jobs
   create_namespace = true
+
+  dynamic "set" {
+    for_each = var.inputs
+    iterator = "input"
+    content {
+      name = input.value["name"]
+      value = input.value["value"]
+    }
+  }
 }
   

@@ -1,6 +1,7 @@
 version: v1.0.0
 kind: project
 name: flaskapp
+lang: python
 inputs:
   name: app.name
   db_host: app.db_host
@@ -8,7 +9,9 @@ inputs:
   db_pass: app.db_pass
   db_port: app.db_port
   db_database: app.db_database
+init:
 build:
+  script_path: ""
   dockerfile: ./Dockerfile
   registry: ghcr.io/TorbFoundry/flaskapp
 deploy:

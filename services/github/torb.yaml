@@ -1,9 +1,0 @@
-version: v1.0.0
-kind: service
-name: github
-params:
-  - name
-  - description
-deploy:
-  tf:
-  helm:

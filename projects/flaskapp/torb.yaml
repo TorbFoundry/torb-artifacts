@@ -9,11 +9,18 @@ inputs:
   db_pass: app.db_pass
   db_port: app.db_port
   db_database: app.db_database
+files:
+  - requirements.txt
+  - Dockerfile
 init:
+  - python -m virtualenv flaskapp_venv
+  - source ./flaskapp_venv/bin/activate
+  - pip install -r requirements.txt
+  - flask fab create-app --app-name TORB.inputs.name
 build:
   script_path: ""
   dockerfile: ./Dockerfile
-  registry: ghcr.io/TorbFoundry/flaskapp
+  registry: ""
 deploy:
   helm:
     custom: true

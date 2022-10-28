@@ -1,2 +1,2 @@
-flask-appbuilder=4.1.4
+flask-appbuilder==4.1.4
 flask

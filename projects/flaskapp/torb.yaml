@@ -16,7 +16,7 @@ init:
   - python -m virtualenv flaskapp_venv
   - source ./flaskapp_venv/bin/activate
   - pip install -r requirements.txt
-  - flask fab create-app --app-name TORB.inputs.name
+  - flask fab create-app --name TORB.inputs.name --engine SQLAlchemy
 build:
   script_path: ""
   dockerfile: ./Dockerfile

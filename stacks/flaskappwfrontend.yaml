@@ -25,6 +25,9 @@ projects:
       db_pass: self.service.postgres_1.output.password
       db_database: self.service.postgres_1.output.database
     values: {}
+    build:
+      tag: latest
+      registry: ""
     deps:
       services:
         - postgres_1

@@ -21,6 +21,7 @@ build:
   script_path: ""
   dockerfile: ./Dockerfile
   registry: ""
+  tag: latest
 deploy:
   helm:
     custom: true

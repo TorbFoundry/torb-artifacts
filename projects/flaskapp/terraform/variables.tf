@@ -21,6 +21,6 @@ variable "values" {
 }
 
 variable "inputs" {
-  type = list(object)
+  type = list(object({name=string, value=string}))
   default = []
 }

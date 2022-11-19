@@ -46,5 +46,5 @@ variable "wait_for_jobs" {
 }
 
 variable "inputs" {
-  type = list(object)
+  type = list(object({name=string, value=string}))
 }

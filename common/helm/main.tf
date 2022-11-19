@@ -13,7 +13,7 @@ resource "helm_release" "release" {
 
   dynamic "set" {
     for_each = var.inputs
-    iterator = "input"
+    iterator = input
     content {
       name = input.value["name"]
       value = input.value["value"]

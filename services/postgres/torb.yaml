@@ -1,6 +1,6 @@
 version: v1.0.0
 kind: service
-name: postgres
+name: postgresql
 inputs:
   port: "containerPorts.postgresql"
   user: "auth.username"

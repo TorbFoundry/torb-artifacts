@@ -1,4 +1,4 @@
-module "postgres_helm_release" {
+module "postgresql_helm_release" {
     source = "../common/helm"
     release_name = var.release_name
     chart_name = var.chart_name

@@ -7,7 +7,7 @@ config:
   ingress: true
 services:
   postgres_1:
-    service: postgres
+    service: postgresql
     inputs:
       port: "5432"
       user: postgres

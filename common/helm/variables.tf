@@ -22,7 +22,7 @@ variable "values" {
 
 variable "repository" {
   type = string
-  default = ""
+  default = null
 }
 
 variable "timeout" {

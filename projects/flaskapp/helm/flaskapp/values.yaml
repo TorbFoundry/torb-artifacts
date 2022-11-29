@@ -46,7 +46,7 @@ ingress:
   annotations:
     kubernetes.io/ingress.class: "traefik.torb"
   hosts:
-    - host: "flaskapp.$stack.$app.local"
+    - host: "flaskapp.stack.svc.cluster.local"
       paths:
         - path: /*
           pathType: Prefix

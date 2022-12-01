@@ -1,0 +1,22 @@
+version: v1.0.0
+kind: project
+name: createreactapp
+lang: typescript
+inputs:
+  name: app.name
+  api_host: app.api_host
+files:
+  - Dockerfile
+init:
+  - npm_config_yes=true npx create-react-app TORB.inputs.name --template typescript
+build:
+  script_path: ""
+  dockerfile: ./Dockerfile
+  registry: ""
+  tag: latest
+deploy:
+  helm:
+    custom: false
+    repository: https://charts.bitnami.com/bitnami
+    chart: apache
+  tf:

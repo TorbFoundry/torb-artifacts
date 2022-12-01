@@ -31,3 +31,16 @@ projects:
     deps:
       services:
         - postgres_1
+  createreactapp_1:
+    project: createreactapp
+    inputs:
+      name: createreactapp
+      api_host: self.project.flaskapp_1.output.host
+      api_port: 5000
+    values: {}
+    build:
+      tag: latest
+      registry: ""
+    deps:
+      projects:
+        - flaskapp_1

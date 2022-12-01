@@ -1,12 +1,11 @@
 FROM python:3.9
 
-WORKDIR ./flaskapp
+WORKDIR /code
 
-COPY ./requirements.txt /code/requirements.txt
+COPY ./flaskapp/requirements.txt /code/requirements.txt
+COPY ./flaskapp/app /code/app
 
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
-COPY ./app /code/app
-
-CMD ["gunicorn", "--conf", "app/gunicorn_conf.py", "--bind", "0.0.0.0:80", "app.main:app"]
-
+EXPOSE 5000
+CMD ["gunicorn", "--conf", "app/gunicorn_conf.py", "--bind", "0.0.0.0:5000", "app.main:app"]

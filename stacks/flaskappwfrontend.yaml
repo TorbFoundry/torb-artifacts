@@ -8,6 +8,7 @@ config:
 services:
   postgres_1:
     service: postgresql
+    values: {}
     inputs:
       port: "5432"
       user: postgres
@@ -34,10 +35,13 @@ projects:
   createreactapp_1:
     project: createreactapp
     inputs:
-      name: createreactapp
-      api_host: self.project.flaskapp_1.output.host
-      api_port: 5000
-    values: {}
+      name: frontend
+    values: 
+      extraEnvVars:
+        - name: API_HOST
+          value: self.project.flaskapp_1.output.host
+        - name: API_PORT
+          value: 5000
     build:
       tag: latest
       registry: ""

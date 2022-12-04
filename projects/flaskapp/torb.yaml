@@ -20,9 +20,10 @@ init:
   - flask fab create-app --name TORB.inputs.name --engine SQLAlchemy
   - mv requirements.txt ./TORB.inputs.name/requirements.txt
   - mv gunicorn_conf.py ./TORB.inputs.name/gunicorn_conf.py
+  - mv Dockerfile ./TORB.inputs.name/Dockerfile
 build:
   script_path: ""
-  dockerfile: ./Dockerfile
+  dockerfile: Dockerfile
   registry: ""
   tag: latest
 deploy:

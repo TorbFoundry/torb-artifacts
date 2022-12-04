@@ -8,8 +8,9 @@ files:
   - Dockerfile
 init:
   - npm_config_yes=true npx create-react-app TORB.inputs.name --template typescript
+  - mv Dockerfile ./TORB.inputs.name/Dockerfile
 build:
-  dockerfile: ./Dockerfile
+  dockerfile: Dockerfile
   registry: ""
   tag: latest
 deploy:

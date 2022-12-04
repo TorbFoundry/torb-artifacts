@@ -9,7 +9,6 @@ files:
 init:
   - npm_config_yes=true npx create-react-app TORB.inputs.name --template typescript
 build:
-  : ""
   dockerfile: ./Dockerfile
   registry: ""
   tag: latest

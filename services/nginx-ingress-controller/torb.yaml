@@ -1,8 +1,8 @@
 version: v1.0.0
 kind: service
 name: nginx-ingress-controller
-inputs:
-outputs:
+inputs: {}
+outputs: {}
 deploy:
   helm:
     repository: https://helm.nginx.com/stable

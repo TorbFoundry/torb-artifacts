@@ -4,6 +4,7 @@ name: createreactapp
 lang: typescript
 inputs:
   name: app.name
+  ingress: ingress.enabled
 files:
   - Dockerfile
 init:

@@ -40,7 +40,13 @@ projects:
     project: createreactapp
     inputs:
       name: frontend
-    values: 
+      ingress: true
+    values:
+      ingress:
+        hosts:
+          - name: localhost
+            path: /
+            servicePort: 8000
       extraEnvVars:
         - name: API_HOST
           value: self.project.flaskapp_1.output.host

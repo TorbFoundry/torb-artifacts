@@ -46,12 +46,12 @@ projects:
         hosts:
           - name: localhost
             path: /
-            servicePort: 8000
+            servicePort: "8000"
       extraEnvVars:
         - name: API_HOST
           value: self.project.flaskapp_1.output.host
         - name: API_PORT
-          value: 5000
+          value: "5000"
     build:
       tag: latest
       registry: ""

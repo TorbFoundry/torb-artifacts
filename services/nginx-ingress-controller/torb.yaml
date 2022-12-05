@@ -1,6 +1,6 @@
 version: v1.0.0
 kind: service
-name: nginx-ingress-controller
+name: nx-ingress-cont
 inputs: {}
 outputs: []
 deploy:

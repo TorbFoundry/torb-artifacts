@@ -40,7 +40,7 @@ projects:
     project: createreactapp
     inputs:
       name: frontend
-      ingress: true
+      ingress: "true"
     values:
       ingress:
         hosts:

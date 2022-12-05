@@ -2,7 +2,7 @@ FROM python:3.9
 
 WORKDIR /code
 
-COPY ./flaskapp .
+COPY ./* .
 
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 

@@ -1,2 +1,2 @@
 FROM bitnami/apache:latest
-COPY build /app
+COPY ./build /app

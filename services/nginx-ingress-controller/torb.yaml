@@ -1,0 +1,11 @@
+version: v1.0.0
+kind: service
+name: nginx-ingress-controller
+inputs:
+outputs:
+deploy:
+  helm:
+    repository: https://helm.nginx.com/stable
+    chart: nginx-stable/nginx-ingress
+    custom: false
+  tf:

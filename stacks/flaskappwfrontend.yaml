@@ -15,6 +15,10 @@ services:
       password: postgres
       database: postgres
       num_replicas: "1"
+  nginx_ingress_controller_1:
+    service: nginx-ingress-controller
+    values: {}
+    inputs: {}
 projects:
   flaskapp_1:
     project: flaskapp
@@ -48,3 +52,4 @@ projects:
     deps:
       projects:
         - flaskapp_1
+        - nginx_ingress_controller_1

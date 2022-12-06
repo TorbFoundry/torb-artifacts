@@ -1,6 +1,6 @@
 version: v1.0.0
 kind: service
-name: nx-ingress-cont
+name: nxingress-cont
 inputs: {}
 outputs: []
 deploy:

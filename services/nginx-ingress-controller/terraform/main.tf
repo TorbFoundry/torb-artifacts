@@ -7,5 +7,4 @@ module "nginx_ingress_controller_helm_release" {
     values = var.values
     inputs = var.inputs
     wait_for_jobs = false
-    wait = false
 }

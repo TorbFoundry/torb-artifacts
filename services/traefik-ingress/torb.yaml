@@ -1,6 +1,11 @@
 version: v1.0.0
 kind: service
 name: traefik-ingress
+inputs:
+  http_enabled: "ports.web.expose"
+  http_port: "ports.web.exposedPort"
+  https_enabled: "ports.websecure.expose"
+  https_port: "ports.websecure.exposedPort"
 deploy:
   helm:
     repository: https://helm.traefik.io/traefik

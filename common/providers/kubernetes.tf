@@ -1,5 +1,5 @@
 data "external" "kubeconfig_env" {
-  program = ["echo", "$KUBECONFIG"]
+  program = ["echo", "{\"kubeconfig\": \"$KUBECONFIG\"}"]
 }
 
 locals {

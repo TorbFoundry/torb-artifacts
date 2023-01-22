@@ -2,9 +2,6 @@ version: v1.0.0
 kind: stack
 name: "Flask App w/ React Frontend"
 description: "Production ready flask web app."
-config:
-  meta: _PROJECT
-  ingress: true
 services:
   postgres_1:
     service: postgresql
@@ -36,9 +33,6 @@ projects:
     build:
       tag: latest
       registry: ""
-    deps:
-      services:
-        - postgres_1
   createreactapp_1:
     project: createreactapp
     inputs:
@@ -59,7 +53,5 @@ projects:
       tag: latest
       registry: ""
     deps:
-      projects:
-        - flaskapp_1
       services:
         - nginx_ingress_controller_1

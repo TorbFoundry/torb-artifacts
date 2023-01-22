@@ -1,0 +1,6 @@
+version: v1.0.0
+kind: stack
+name: "Stack Template"
+description: ""
+services:
+projects:

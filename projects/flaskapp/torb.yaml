@@ -29,7 +29,7 @@ build:
 deploy:
   helm:
     custom: true
-    chart: torb-artifacts/projects/flaskapp/helm/flaskapp
+    chart: repositories/torb-artifacts/projects/flaskapp/helm/flaskapp
     chart_version: 1.0.0
     repository: ""
   tf:

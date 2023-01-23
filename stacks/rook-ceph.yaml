@@ -1,0 +1,17 @@
+version: v1.0.0
+kind: stack
+name: "Rook Ceph"
+description: "Deploy the rook-ceph operator and a ceph cluster."
+namespace: rook-ceph
+services:
+  rook_ceph_operator_1:
+    service: rook-ceph-operator
+    inputs:
+      logLevel: "INFO"
+  rook_ceph_cluster_1:
+    service: rook-ceph-cluster
+    inputs:
+      clusterName: "rook-ceph"
+    deps:
+      services:
+        - rook_ceph_operator_1

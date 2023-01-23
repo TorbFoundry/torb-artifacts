@@ -1,2 +1,3 @@
 stacks:
-    "Flask App w/ React Frontend": "flaskappwfrontend.yaml"
+    "flask-react": "flaskappwfrontend.yaml"
+    "rook-ceph": "rook-ceph.yaml"

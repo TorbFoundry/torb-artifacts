@@ -1,0 +1,11 @@
+version: v1.0.0
+kind: service
+name: rook-ceph-cluster
+inputs:
+  clusterName: clusterName
+deploy:
+  helm:
+    repository: https://charts.rook.io/release
+    chart: rook-ceph-cluster
+    custom: false
+  tf:

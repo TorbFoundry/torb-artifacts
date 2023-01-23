@@ -1,0 +1,11 @@
+version: v1.0.0
+kind: service
+name: rook-ceph-operator
+inputs:
+  logLevel: logLevel
+deploy:
+  helm:
+    repository: https://charts.rook.io/release
+    chart: rook-ceph
+    custom: false
+  tf:

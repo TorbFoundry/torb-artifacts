@@ -1,0 +1,38 @@
+version: v1.0.0
+kind: project
+name: phoenix
+lang: elixir
+inputs:
+  name: app.name
+  db_host: app.db_host
+  db_user: app.db_user
+  db_pass: app.db_pass
+  db_port: app.db_port
+  db_database: app.db_database
+  umbrella: ""
+  no_live: ""
+  no_ecto: ""
+  no_dash: ""
+  no_html: ""
+  no_assets: "" 
+files:
+  - Dockerfile
+  - release.sh
+  - init.sh
+init:
+  - mkdir ./TORB.inputs.name
+  - mv Dockerfile ./TORB.inputs.name/Dockerfile
+  - mv init.sh ./TORB.inputs.name/init.sh 
+  - bash init.sh TORB.inputs.umbrella TORB.inputs.no_live TORB.inputs.no_ecto TORB.inputs.no_dash TORB.inputs.no_html TORB.inputs.no_assets
+build:
+  script_path: ""
+  dockerfile: Dockerfile
+  registry: ""
+  tag: latest
+deploy:
+  helm:
+    custom: true
+    chart: repositories/torb-artifacts/projects/phoenix/helm/flaskapp
+    chart_version: 1.0.0
+    repository: ""
+  tf:

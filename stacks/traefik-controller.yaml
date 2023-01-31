@@ -1,0 +1,9 @@
+version: v1.0.0
+kind: stack
+name: "Traefik Ingress Controller"
+description: "Installs the traefik ingress controller to your cluster."
+namespace: ingress-controller
+services:
+  traefik_ingress_1:
+    service: traefik-ingress
+    values: {}

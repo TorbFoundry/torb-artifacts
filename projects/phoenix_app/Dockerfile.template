@@ -1,14 +1,14 @@
 # ---- Build Stage ----
-FROM elixir:1.14.3-alpine AS builder
+FROM $ELIXIR_IMAGE AS builder
 
 ENV MIX_ENV=prod \
     LANG=C.UTF-8
 
-COPY config ./config
-COPY lib ./lib
-COPY priv ./priv
-COPY mix.exs .
-COPY mix.lock .
+COPY ./$APP_NAME/config ./config
+COPY ./$APP_NAME/lib ./lib
+COPY ./$APP_NAME/priv ./priv
+COPY ./$APP_NAME/mix.exs .
+COPY ./$APP_NAME/mix.lock .
 
 RUN mix local.hex --force && \
     mix local.rebar --force && \
@@ -31,4 +31,4 @@ WORKDIR /app
 
 COPY --from=builder _build .
 
-CMD ["/app/prod/rel/${APP_NAME}/bin/${APP_NAME}", "start"]
+CMD ["/app/prod/rel/$APP_NAME/bin/$APP_NAME", "start"]

@@ -1,16 +1,16 @@
 #!/bin/bash
 
-name="$1"
-umbrella="$2"
-no_live="$3"
-no_ecto="$4"
-no_dash="$5"
-no_html="$6"
-no_assets="$7"
-database="$8"
-dfm_workaround="$9"
+name=$1
+umbrella=$2
+no_live=$3
+no_ecto=$4
+no_dash=$5
+no_html=$6
+no_assets=$7
+database=$8
+dfm_workaround=$9
 
-name=${name//[^a-zA-Z0-9]/}
+name=${name//[^a-zA-Z0-9_]/}
 
 command="mix phx.new ./$name"
 
@@ -45,7 +45,7 @@ if [ "$no_assets" = "true" ]; then
     command="$command --no-assets"
 fi
 
-mix archive.install hex phx_new --force
+mix archive.install hex phx_new 1.6.16 --force
 
 command="$command --install"
 
@@ -56,14 +56,11 @@ cd "${0%/*}"
 
 eval $command
 
-APP_NAME=$name
-ELIXIR_IMAGE=elixir:1.14.3-alpine
+ELIXIR_VERSION=v1.14.3
+ERLANG_VERSION=23
 
-if [ "$dfm_workaround" = "true" ]; then
-    ELIXIR_IMAGE=elixir:1.8.2-otp-22-alpine
-fi
+df_output="$(ELIXIR_VERSION=$ELIXIR_VERSION ERLANG_VERSION=$ERLANG_VERSION APP_NAME="$name" envsubst < Dockerfile.template)"
 
-df_output="$(envsubst < Dockerfile.template)"
 
 echo "$df_output" > ./Dockerfile
 

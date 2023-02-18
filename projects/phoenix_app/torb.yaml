@@ -7,25 +7,31 @@ inputs:
   no_ecto: [bool, false, ""]
   no_dash: [bool, false, ""]
   no_html: [bool, false, ""]
-  database: [bool, false, ""]
+  database: [string, "postgres", ""]
   umbrella: [bool, false, ""]
   no_assets: [bool, false, ""]
   dfm_workaround: [bool, false, ""]
-  name: [string, "phoenix_app", ""]
+  name: [string, "phoenix_app", "app.name"]
+  test_bool: [bool, false, "test.bool"]
+  test_float: [numeric, 1.5, "test.float"]
+  test_posint: [numeric, 2, "test.posint"]
+  test_negint: [numeric, -1, "test.negint"]
+  test_array: [array, [1, 2, 3, 4], "test.array"]
 files:
   - Dockerfile.template
   - release.sh
   - init.sh
 init:
-  - mkdir ./TORB.inputs.name
-  - mv Dockerfile.template ./TORB.inputs.name/Dockerfile.template
-  - mv init.sh ./TORB.inputs.name/init.sh 
-  - chmod +x ./TORB.inputs.name/init.sh
-  - ./TORB.inputs.name/init.sh TORB.inputs.name TORB.inputs.umbrella TORB.inputs.no_live TORB.inputs.no_ecto TORB.inputs.no_dash TORB.inputs.no_html TORB.inputs.no_assets TORB.inputs.database TORB.inputs.dfm_workaround
+  - APP_NAME=$(echo TORB.inputs.name | jq -r)
+  - mkdir ./$APP_NAME
+  - mv Dockerfile.template ./$APP_NAME/Dockerfile.template
+  - mv init.sh ./$APP_NAME/init.sh
+  - chmod +x ./$APP_NAME/init.sh
+  - ./$APP_NAME/init.sh $APP_NAME TORB.inputs.umbrella TORB.inputs.no_live TORB.inputs.no_ecto TORB.inputs.no_dash TORB.inputs.no_html TORB.inputs.no_assets TORB.inputs.database TORB.inputs.dfm_workaround
 build:
   script_path: ""
   dockerfile: Dockerfile
-  registry: ""
+  registry: "local"
   tag: latest
 deploy:
   helm:

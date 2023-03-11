@@ -1,0 +1,60 @@
+version: v1.0.0
+kind: stack
+name: "Elixir Phoenix React"
+description: "Phoenix app with a separate React frontend."
+services:
+  postgres_1:
+    service: postgresql
+    values: {}
+    inputs:
+      port: "5432"
+      user: postgres
+      password: postgres
+      database: postgres
+      num_replicas: "1"
+projects:
+  phoenix_1:
+    project: phoenix_app
+    inputs:
+      name: phoenix_app
+      db_host: self.service.postgres_1.output.host
+      db_port: self.service.postgres_1.output.port
+      db_user: self.service.postgres_1.output.user
+      db_pass: self.service.postgres_1.output.password
+      db_database: self.service.postgres_1.output.database
+      no_assets: true
+      no_live: true
+      no_html: true
+    values:
+      ingress:
+        enabled: true
+        hosts:
+          - host: "api.phoenix-react.torblet.tech"
+            paths:
+              - path: /
+                pathType: Prefix
+                servicePort: http
+    build:
+      tag: latest
+      registry: ""
+  createreactapp_1:
+    project: createreactapp
+    inputs:
+      name: createreactapp
+      ingress: "true"
+    values:
+      service:
+        type: ClusterIP
+      ingress:
+        enabled: true
+        ingressClassName: ""
+        hostname: "frontend.phoenix-react.torblet.tech"
+        path: /
+      extraEnvVars:
+        - name: API_HOST
+          value: "api.phoenix-react.torblet.tech"
+        - name: API_PORT
+          value: "80"
+    build:
+      tag: latest
+      registry: ""

@@ -1,0 +1,46 @@
+version: v1.0.0
+kind: project
+name: phoenix_app
+lang: elixir
+inputs:
+  no_live: [bool, false, ""]
+  no_ecto: [bool, false, ""]
+  no_dash: [bool, false, ""]
+  no_html: [bool, false, ""]
+  database: [string, "postgres", ""]
+  umbrella: [bool, false, ""]
+  no_assets: [bool, false, ""]
+  dfm_workaround: [bool, false, ""]
+  port: [numeric, 4000, "service.port"]
+  name: [string, "phoenix_app", ""]
+  secret_key_base: [string, "CHANGE_ME", "app.secretKeyBase"]
+  db_user: [string, "", "app.database.user"]
+  db_pass: [string, "", "app.database.pw"]
+  db_host: [string, "", "app.database.host"]
+  db_port: [string, "", "app.database.port"]
+  db_database: [string, "", "app.database.db"]
+files:
+  - Dockerfile.template
+  - Dockerfile.react.template
+  - release.sh
+  - init.sh
+init:
+  - APP_NAME=$(echo TORB.inputs.name | jq -r)
+  - mkdir ./$APP_NAME
+  - mv Dockerfile.template ./$APP_NAME/Dockerfile.template
+  - mv Dockerfile.react.template ./$APP_NAME/Dockerfile.react.template
+  - mv init.sh ./$APP_NAME/init.sh
+  - chmod +x ./$APP_NAME/init.sh
+  - ./$APP_NAME/init.sh $APP_NAME TORB.inputs.umbrella TORB.inputs.no_live TORB.inputs.no_ecto TORB.inputs.no_dash TORB.inputs.no_html TORB.inputs.no_assets TORB.inputs.database TORB.inputs.dfm_workaround TORB.inputs.port > .init.log 2>&1
+build:
+  script_path: ""
+  dockerfile: Dockerfile
+  registry: "local"
+  tag: latest
+deploy:
+  helm:
+    custom: true
+    chart: repositories/torb-artifacts/projects/phoenix_app/helm/phoenix_app
+    chart_version: 1.0.0
+    repository: ""
+  tf:

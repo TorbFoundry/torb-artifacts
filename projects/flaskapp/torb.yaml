@@ -24,7 +24,7 @@ init:
 build:
   script_path: ""
   dockerfile: Dockerfile
-  registry: ""
+  registry: "local"
   tag: latest
 deploy:
   helm:

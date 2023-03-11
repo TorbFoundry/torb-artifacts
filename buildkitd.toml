@@ -1,0 +1,3 @@
+[registry."docker.torblet.tech"]
+    http = true
+    insecure = true

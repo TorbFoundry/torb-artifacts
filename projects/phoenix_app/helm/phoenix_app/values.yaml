@@ -1,14 +1,24 @@
-# Default values for flaskapp.
+# Default values for phoenix.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
 
 image:
-  repository: ghcr.io/TorbFoundry/flaskapp
-  pullPolicy: IfNotPresent
+  repository: ghcr.io/TorbFoundry/phoenix
+  pullPolicy: Never
   # Overrides the image tag whose default is the chart appVersion.
   tag: latest
+
+app:
+  secretKeyBase: ""
+  database:
+    host: ""
+    port: ""
+    user: ""
+    pw: ""
+    db: ""
+
 
 imagePullSecrets: []
 nameOverride: ""
@@ -41,12 +51,9 @@ service:
   port: 4000
 
 ingress:
-  enabled: true
-  className: ""
-  annotations:
-    kubernetes.io/ingress.class: "traefik.torb"
+  enabled: false
   hosts:
-    - host: "flaskapp.stack.svc.cluster.local"
+    - host: phoenix.torblet.app
       paths:
         - path: /*
           pathType: Prefix

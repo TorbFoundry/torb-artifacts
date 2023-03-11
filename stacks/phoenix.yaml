@@ -1,0 +1,35 @@
+version: v1.0.0
+kind: stack
+name: "Elixir Phoenix"
+description: "Phoenix App"
+services:
+  postgres_1:
+    service: postgresql
+    values: {}
+    inputs:
+      port: "5432"
+      user: postgres
+      password: postgres
+      database: postgres
+      num_replicas: "1"
+projects:
+  phoenix_1:
+    project: phoenix_app
+    inputs:
+      name: phoenix_app
+      secret_key_base: "CHANGE_ME"
+      db_user: self.service.postgres_1.output.user
+      db_pass: self.service.postgres_1.output.password
+      db_host: self.service.postgres_1.output.host
+      db_port: self.service.postgres_1.output.port
+      db_database: self.service.postgres_1.output.database
+    values:
+      ingress:
+        hosts:
+          - host: "phoenix.torblet.app"
+            paths:
+              - path: /*
+                pathType: Prefix
+    build:
+      tag: latest
+      registry: ""

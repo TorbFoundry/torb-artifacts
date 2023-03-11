@@ -1,3 +1,7 @@
 stacks:
     "flask-react": "flaskappwfrontend.yaml"
     "rook-ceph": "rook-ceph.yaml"
+    "phoenix": "phoenix.yaml"
+    "phoenix-react": "phoenix-react.yaml"
+    "traefik-controller": "traefik-controller.yaml"
+    "dev-quickstart": "dev-quickstart.yaml"

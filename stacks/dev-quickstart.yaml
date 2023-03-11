@@ -1,0 +1,16 @@
+version: v1.0.0
+kind: stack
+name: "Dev Quickstart"
+description: "A stack to help you quickly start building with Torb."
+services:
+  docker_registry_1:
+    service: docker-registry
+    namespace: docker-registry
+    values: {}
+    deps:
+      services:
+        - traefik_ingress_1
+  traefik_ingress_1:
+    service: traefik-ingress
+    namespace: ingress-controller
+    values: {}

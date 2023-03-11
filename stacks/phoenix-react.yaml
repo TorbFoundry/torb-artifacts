@@ -22,16 +22,18 @@ projects:
       db_user: self.service.postgres_1.output.user
       db_pass: self.service.postgres_1.output.password
       db_database: self.service.postgres_1.output.database
-      no_assets: "true"
-      no_live: "true"
-      no_html: "true"
+      no_assets: true
+      no_live: true
+      no_html: true
     values:
       ingress:
+        enabled: true
         hosts:
-          - host: "api.phoenix-react.torblet.app"
+          - host: "api.phoenix-react.torblet.tech"
             paths:
-              - path: /*
+              - path: /
                 pathType: Prefix
+                servicePort: http
     build:
       tag: latest
       registry: ""
@@ -44,12 +46,15 @@ projects:
       service:
         type: ClusterIP
       ingress:
-        hostname: frontend.phoenix-react.torblet.app
+        enabled: true
+        ingressClassName: ""
+        hostname: "frontend.phoenix-react.torblet.tech"
+        path: /
       extraEnvVars:
         - name: API_HOST
-          value: self.project.phoenix_1.output.host
+          value: "api.phoenix-react.torblet.tech"
         - name: API_PORT
-          value: "5000"
+          value: "80"
     build:
       tag: latest
       registry: ""

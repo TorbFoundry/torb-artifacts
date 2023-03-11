@@ -8,11 +8,16 @@ inputs:
 files:
   - Dockerfile
 init:
-  - npm_config_yes=true npx create-react-app TORB.inputs.name --template typescript
-  - mv Dockerfile ./TORB.inputs.name/Dockerfile
+  - APP_NAME=$(echo TORB.inputs.name | jq -r)
+  - npm_config_yes=true npx create-react-app $APP_NAME --template typescript
+  - mv Dockerfile ./$APP_NAME/Dockerfile
+  - pushd $APP_NAME
+  - npm run init
+  - npm run build
+  - popd
 build:
   dockerfile: Dockerfile
-  registry: ""
+  registry: "local"
   tag: latest
 deploy:
   helm:

@@ -11,23 +11,27 @@ inputs:
   umbrella: [bool, false, ""]
   no_assets: [bool, false, ""]
   dfm_workaround: [bool, false, ""]
-  name: [string, "phoenix_app", "app.name"]
-  test_bool: [bool, false, "test.bool"]
-  test_float: [numeric, 1.5, "test.float"]
-  test_posint: [numeric, 2, "test.posint"]
-  test_negint: [numeric, -1, "test.negint"]
-  test_array: [array, [1, 2, 3, 4], "test.array"]
+  port: [numeric, 4000, "service.port"]
+  name: [string, "phoenix_app", ""]
+  secret_key_base: [string, "CHANGE_ME", "app.secretKeyBase"]
+  db_user: [string, "", "app.database.user"]
+  db_pass: [string, "", "app.database.pw"]
+  db_host: [string, "", "app.database.host"]
+  db_port: [string, "", "app.database.port"]
+  db_database: [string, "", "app.database.db"]
 files:
   - Dockerfile.template
+  - Dockerfile.react.template
   - release.sh
   - init.sh
 init:
   - APP_NAME=$(echo TORB.inputs.name | jq -r)
   - mkdir ./$APP_NAME
   - mv Dockerfile.template ./$APP_NAME/Dockerfile.template
+  - mv Dockerfile.react.template ./$APP_NAME/Dockerfile.react.template
   - mv init.sh ./$APP_NAME/init.sh
   - chmod +x ./$APP_NAME/init.sh
-  - ./$APP_NAME/init.sh $APP_NAME TORB.inputs.umbrella TORB.inputs.no_live TORB.inputs.no_ecto TORB.inputs.no_dash TORB.inputs.no_html TORB.inputs.no_assets TORB.inputs.database TORB.inputs.dfm_workaround
+  - ./$APP_NAME/init.sh $APP_NAME TORB.inputs.umbrella TORB.inputs.no_live TORB.inputs.no_ecto TORB.inputs.no_dash TORB.inputs.no_html TORB.inputs.no_assets TORB.inputs.database TORB.inputs.dfm_workaround TORB.inputs.port > .init.log 2>&1
 build:
   script_path: ""
   dockerfile: Dockerfile
@@ -36,7 +40,7 @@ build:
 deploy:
   helm:
     custom: true
-    chart: repositories/torb-artifacts/projects/phoenix/helm/phoenix
+    chart: repositories/torb-artifacts/projects/phoenix_app/helm/phoenix_app
     chart_version: 1.0.0
     repository: ""
   tf:

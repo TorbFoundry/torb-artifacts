@@ -33,18 +33,32 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: "DATABASE_URL"
+              valueFrom:
+                secretKeyRef:
+                  key:  url
+                  name: {{ .Release.Name }}-db
+            - name: "SECRET_KEY_BASE"
+              valueFrom:
+                secretKeyRef:
+                  key:  skb
+                  name: {{ .Release.Name }}-skb
+            - name: "PORT"
+              valueFrom:
+                secretKeyRef:
+                  key:  port
+                  name: {{ .Release.Name }}-pt
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
-          readinessProbe:
-            httpGet:
-              path: /
-              port: http
+          httpGet:
+            path: /
+            port: http
+          httpGet:
+            path: /
+            port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

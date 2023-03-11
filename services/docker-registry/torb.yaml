@@ -1,0 +1,12 @@
+version: v1.0.0
+kind: service
+name: docker-registry
+inputs:
+  ingressEnabled: [bool, true, "ingress.enabled"]
+  ingressClassName: [string, "", "ingress.className"]
+deploy:
+  helm:
+    repository: https://helm.twun.io
+    chart: docker-registry
+    custom: false
+  tf:

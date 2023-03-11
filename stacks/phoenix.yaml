@@ -17,6 +17,12 @@ projects:
     project: phoenix_app
     inputs:
       name: phoenix_app
+      secret_key_base: "CHANGE_ME"
+      db_user: self.service.postgres_1.output.user
+      db_pass: self.service.postgres_1.output.password
+      db_host: self.service.postgres_1.output.host
+      db_port: self.service.postgres_1.output.port
+      db_database: self.service.postgres_1.output.database
     values:
       ingress:
         hosts:

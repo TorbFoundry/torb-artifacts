@@ -6,9 +6,19 @@ replicaCount: 1
 
 image:
   repository: ghcr.io/TorbFoundry/phoenix
-  pullPolicy: IfNotPresent
+  pullPolicy: Never
   # Overrides the image tag whose default is the chart appVersion.
   tag: latest
+
+app:
+  secretKeyBase: ""
+  database:
+    host: ""
+    port: ""
+    user: ""
+    pw: ""
+    db: ""
+
 
 imagePullSecrets: []
 nameOverride: ""
@@ -42,9 +52,6 @@ service:
 
 ingress:
   enabled: false
-  className: "traefik.io/ingress-controller"
-  annotations:
-    kubernetes.io/ingress.class: traefik.io/ingress-controller
   hosts:
     - host: phoenix.torblet.app
       paths:

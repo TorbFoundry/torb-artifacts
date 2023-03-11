@@ -74,7 +74,7 @@ BUILDER_IMAGE="hexpm/elixir:${ELIXIR_VERSION}-erlang-${ERLANG_VERSION}-${OS}-${O
 RUNNER_IMAGE="${OS}:${OS_VERSION}"
 MIX_ENV="prod"
 
-df_output="$(MIX_ENV=$MIX_ENV BUILDER_IMAGE=$BUILDER_IMAGE RUNNER_IMAGE=$RUNNER_IMAGE PORT=$port APP_NAME="$name" envsubst < $dockerfile_template)"
+df_output="$(MIX_ENV=$MIX_ENV BUILDER_IMAGE=$BUILDER_IMAGE RUNNER_IMAGE=$RUNNER_IMAGE PORT=$port APP_NAME="$name" envsubst < $docker_template)"
 
 echo "$df_output" > ./Dockerfile
 

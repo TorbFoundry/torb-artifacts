@@ -1,0 +1,27 @@
+version: v1.0.0
+kind: project
+name: createnextapp
+lang: typescript
+inputs:
+  name: [string, "next_app", app.name]
+  ingress: [bool, true, ingress.enabled]
+files:
+  - Dockerfile
+init:
+  - APP_NAME=$(echo TORB.inputs.name | jq -r)
+  - npm_config_yes=true npx create-next-app@latest --typescript $APP_NAME --eslint --src-dir --use-app --no-experimental-app --import-alias "@/*"
+  - mv Dockerfile ./$APP_NAME/Dockerfile
+  - pushd $APP_NAME
+  - npm run build
+  - popd
+build:
+  dockerfile: Dockerfile
+  registry: "local"
+  tag: latest
+deploy:
+  helm:
+    custom: true
+    chart: repositories/torb-artifacts/projects/createnextapp/helm/createnextapp
+    chart_version: 1.0.0
+    repository: ""
+  tf:

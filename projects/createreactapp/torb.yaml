@@ -12,7 +12,6 @@ init:
   - npm_config_yes=true npx create-react-app $APP_NAME --template typescript
   - mv Dockerfile ./$APP_NAME/Dockerfile
   - pushd $APP_NAME
-  - npm run init
   - npm run build
   - popd
 build:

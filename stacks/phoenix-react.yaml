@@ -36,7 +36,7 @@ projects:
                 servicePort: http
     build:
       tag: latest
-      registry: ""
+      registry: "local"
   createreactapp_1:
     project: createreactapp
     inputs:
@@ -57,4 +57,4 @@ projects:
           value: "80"
     build:
       tag: latest
-      registry: ""
+      registry: "local"

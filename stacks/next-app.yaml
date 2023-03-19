@@ -1,0 +1,20 @@
+version: v1.0.0
+kind: stack
+name: "Next App"
+description: "Template Next App"
+projects:
+  phoenix_1:
+    project: createnextapp
+    inputs:
+      name: next_app
+      ingress: true
+    values:
+      ingress:
+        hosts:
+          - host: "next.torblet.tech"
+            paths:
+              - path: /
+                pathType: Prefix
+    build:
+      tag: latest
+      registry: "local"

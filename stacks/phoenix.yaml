@@ -26,10 +26,10 @@ projects:
     values:
       ingress:
         hosts:
-          - host: "phoenix.torblet.app"
+          - host: "phoenix.torblet.tech"
             paths:
-              - path: /*
+              - path: /
                 pathType: Prefix
     build:
       tag: latest
-      registry: ""
+      registry: "local"

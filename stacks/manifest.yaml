@@ -1,5 +1,6 @@
 stacks:
     "flask-react": "flaskappwfrontend.yaml"
+    "next-app": "next-app.yaml"
     "rook-ceph": "rook-ceph.yaml"
     "phoenix": "phoenix.yaml"
     "phoenix-react": "phoenix-react.yaml"

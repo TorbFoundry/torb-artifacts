@@ -29,10 +29,15 @@ projects:
       db_user: self.service.postgres_1.output.user
       db_pass: self.service.postgres_1.output.password
       db_database: self.service.postgres_1.output.database
-    values: {}
+    values:
+      ingress:
+        hosts:
+          - name: flask.torblet.tech
+            path: /
+            servicePort: "5000"
     build:
       tag: latest
-      registry: ""
+      registry: "local"
   createreactapp_1:
     project: createreactapp
     inputs:
@@ -41,17 +46,17 @@ projects:
     values:
       ingress:
         hosts:
-          - name: localhost
+          - name: react.torblet.tech
             path: /
             servicePort: "8000"
       extraEnvVars:
         - name: API_HOST
-          value: self.project.flaskapp_1.output.host
+          value: flask.torblet.tech
         - name: API_PORT
           value: "5000"
     build:
       tag: latest
-      registry: ""
+      registry: "local"
     deps:
       services:
         - nginx_ingress_controller_1

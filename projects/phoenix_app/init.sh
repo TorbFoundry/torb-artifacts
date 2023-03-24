@@ -45,7 +45,7 @@ if [ "$no_html" = "true" ]; then
 fi
 
 if [ "$no_assets" = "true" ]; then
-    dockerfile_template="Dockerfile.react.template"
+    docker_template="Dockerfile.react.template"
     command="$command --no-assets"
 fi
 

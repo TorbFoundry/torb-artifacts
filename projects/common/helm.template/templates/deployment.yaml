@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "phoenix.fullname" . }}
+  name: {{ include "template.fullname" . }}
   labels:
-    {{- include "phoenix.labels" . | nindent 4 }}
+    {{- include "template.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "phoenix.selectorLabels" . | nindent 6 }}
+      {{- include "template.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,13 +18,13 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "phoenix.selectorLabels" . | nindent 8 }}
+        {{- include "template.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "phoenix.serviceAccountName" . }}
+      serviceAccountName: {{ include "template.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -34,35 +34,21 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
-            - name: "DATABASE_URL"
-              valueFrom:
-                secretKeyRef:
-                  key:  url
-                  name: {{ .Release.Name }}-db
-            - name: "SECRET_KEY_BASE"
-              valueFrom:
-                secretKeyRef:
-                  key:  skb
-                  name: {{ .Release.Name }}-skb
-            - name: "PORT"
-              valueFrom:
-                secretKeyRef:
-                  key:  port
-                  name: {{ .Release.Name }}-pt
-          {{- range .Values.envVars }}
-            - name: {{ .name }}
-              value: {{ .value }}
-          {{- end}}
+            {{- range .Values.envVars }}
+              - {{.}}
+            {{- end}}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
-          httpGet:
-            path: /
-            port: http
-          httpGet:
-            path: /
-            port: http
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

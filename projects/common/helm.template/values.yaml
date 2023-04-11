@@ -1,24 +1,14 @@
-# Default values for phoenix.
+# Default values for template.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
 
 image:
-  repository: ghcr.io/TorbFoundry/phoenix
-  pullPolicy: Never
+  repository: nginx
+  pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: latest
-
-app:
-  secretKeyBase: ""
-  database:
-    host: ""
-    port: ""
-    user: ""
-    pw: ""
-    db: ""
-
+  tag: ""
 
 imagePullSecrets: []
 nameOverride: ""
@@ -48,15 +38,19 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 4000
+  port: 80
 
 ingress:
   enabled: false
+  className: ""
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: phoenix.torblet.app
+    - host: chart-example.local
       paths:
-        - path: /*
-          pathType: Prefix
+        - path: /
+          pathType: ImplementationSpecific
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
@@ -84,7 +78,5 @@ autoscaling:
 nodeSelector: {}
 
 tolerations: []
-
-envVars: []
 
 affinity: {}

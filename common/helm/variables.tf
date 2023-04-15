@@ -45,6 +45,16 @@ variable "wait_for_jobs" {
   default = true
 }
 
+variable "postrender_path" {
+  type = string
+  default = null
+}
+
+variable "postrender_args" {
+  type = list(string)
+  default = [""]
+}
+
 variable "inputs" {
   type = list(object({name=string, value=string}))
 }

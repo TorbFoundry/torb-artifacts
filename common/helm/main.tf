@@ -19,5 +19,13 @@ resource "helm_release" "release" {
       value = input.value["value"]
     }
   }
+
+  dynamic "postrender" {
+    for_each = var.postrender_path != null ? ["1"] : []
+    content {
+      binary_path = var.postrender_path
+      args = concat(var.postrender_args, [path.cwd])
+    }
+  }
 }
-  
+

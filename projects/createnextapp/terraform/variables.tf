@@ -24,3 +24,13 @@ variable "inputs" {
   type = list(object({name=string, value=string}))
   default = []
 }
+
+variable "postrender_path" {
+  type = string
+  default = null
+}
+
+variable "postrender_args" {
+  type = list(string)
+  default = [""]
+}

@@ -1,0 +1,19 @@
+resources:
+  - all.yaml
+patches:
+  - target:
+      kind: Deployment
+      name: ".*"
+    patch: |
+      - op: add
+        path: "/spec/template/spec/volumes"
+        value:
+          - name: dev-$NODE_NAME
+            hostPath:
+              type: Directory
+              path: "$MOUNT_PATH"
+      - op: add
+        path: "/spec/template/spec/containers/0/volumeMounts"
+        value:
+          - name: "dev-$NODE_NAME"
+            mountPath: $DEV_PATH

@@ -6,4 +6,6 @@ module "createreactapp_helm_release" {
     namespace = var.namespace
     values = var.values
     inputs = var.inputs
+    postrender_path = var.postrender_path
+    postrender_args = var.postrender_args
 }

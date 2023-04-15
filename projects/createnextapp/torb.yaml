@@ -7,6 +7,7 @@ inputs:
   ingress: [bool, true, ingress.enabled]
 files:
   - Dockerfile
+  - Dockerfile.dev
 init:
   - APP_NAME=$(echo TORB.inputs.name | jq -r)
   - npm_config_yes=true npx create-next-app@latest --typescript $APP_NAME --eslint --src-dir --use-app --no-experimental-app --import-alias "@/*"

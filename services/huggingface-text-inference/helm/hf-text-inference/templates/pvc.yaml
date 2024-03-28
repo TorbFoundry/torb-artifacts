@@ -1,0 +1,12 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: hf-text-inference-data-pvc
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  volumeName: hf-text-inference-data-pv
+  resources:
+    requests:
+      storage: {{ .Values.launcher.pvc.size }}

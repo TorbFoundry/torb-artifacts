@@ -1,0 +1,14 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: hf-text-inference-data-pv
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: {{ .Values.launcher.pvc.size }}
+  hostPath:
+    path: "/mnt/data"

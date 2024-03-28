@@ -1,0 +1,94 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "hf-text-inference.fullname" . }}
+  labels:
+    {{- include "hf-text-inference.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "hf-text-inference.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "hf-text-inference.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "hf-text-inference.serviceAccountName" . }}
+      runtimeClassName: nvidia
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      volumes:
+        - name: shm
+          emptyDir:
+            medium: Memory
+            sizeLimit: 1Gi
+        - name: data
+          persistentVolumeClaim:
+            claimName: hf-text-inference-data-pvc
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          volumeMounts:
+            - mountPath: /dev/shm
+              name: shm
+            - mountPath: /data
+              name: data
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+          #livenessProbe:
+            # httpGet:
+            #  path: /
+            #  port: http
+          #readinessProbe:
+            #httpGet:
+            #  path: /
+            #  port: http
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          args:
+            [
+              "--model-id={{.Values.launcher.model_id}}",
+              "--sharded={{.Values.launcher.sharded}}",
+              "--quantize={{.Values.launcher.quantize}}",
+              "--num-shard={{.Values.launcher.num_shard}}",
+              "--max-total-tokens={{.Values.launcher.max_total_tokens}}",
+              "--max-input-length={{.Values.launcher.max_input_length}}",
+              "--max-stop-sequences={{.Values.launcher.max_stop_sequences}}",
+              "--max-batch-prefill-tokens={{.Values.launcher.max_batch_prefill_tokens}}",
+              "--max-batch-total-tokens={{.Values.launcher.max_batch_total_tokens}}",
+              "--rope-scale-factor={{.Values.launcher.rope_scale_factor}}",
+              {{if .Values.launcher.rope_dynamic_scaling}}
+              "--rope-dynamic-scaling",
+              {{end}}
+              {{if .Values.launcher.trust_remote_code}}
+              "--trust-remote-code",
+              {{end}}
+            ]
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

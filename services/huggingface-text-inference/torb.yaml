@@ -1,0 +1,23 @@
+version: v1.0.0
+kind: service
+name: huggingface-text-inference
+inputs:
+  model_id: [string, "", "launcher.model_id"]
+  trust_remote_code: [bool, false, "launcher.trust_remote_code"]
+  num_shard: [numeric, 1, "launcher.num_shard"]
+  sharded: [bool, true, "launcher.sharded"]
+  quantize: [string, "", "launcher.quantize"]
+  max_total_tokens: [numeric, 2048, "launcher.max_total_tokens"]
+  max_batch_prefill_tokens: [numeric, 2048, "launcher.max_batch_prefill_tokens"]
+  max_batch_total_tokens: [numeric, 2048, "launcher.max_batch_total_tokens"]
+  max_input_length: [numeric, 1536, "launcher.max_input_length"]
+  max_stop_sequences: [numeric, 4, "launcher.max_stop_sequences"]
+  rope_scale_factor: [numeric, 1, "launcher.rope_scale_factor"]
+  rope_dynamic_scaling: [bool, false, "launcher.rope_dynamic_scaling"]
+deploy:
+  helm:
+    custom: true
+    chart: repositories/torb-artifacts/services/huggingface-text-inference/helm/hf-text-inference
+    chart_version: 1.0.0
+    repository: ""
+  tf:
